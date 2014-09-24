@@ -30,5 +30,3 @@ INa = m^3*gNa*h*(vm-ENa);
 IK = n^4*gK*(vm-EK);
 IL = gL*(vm-EL);
 Iion = I-IK-INa-IL;
-
-%% Derivatives
