@@ -32,3 +32,26 @@ IL = gL*(vm-EL);
 Iion = I-IK-INa-IL;
 
 %% Derivatives
+
+plot(t,V);
+hold on
+legend({'Voltage'});
+
+ylabel('Voltage (mV)')
+xlabel('time (ms)')
+title('Voltage vs. Time in Simulated Neuron')
+
+figure
+p1 = plot(t,gK*n.^4);
+hold on
+p2 = plot(t,gNa*(m.^3).*h);
+legend([p1,p2], 'Conductance for K', 'Conductance for Na')
+ylabel('Conductance')
+xlabel('time (ms)')
+
+
+
+
+
+
+
