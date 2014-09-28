@@ -10,15 +10,27 @@ t = 0:hstep:simTime;
 %I(1:numel(t)) = 0;
 tau = length(t);
 
-I = zeros(tau);
+%% 
+% 
 
+%%
+%% Current 
+% To use t
+I = zeros(tau); %Current // ONLY USE THIS ONE FOR RESTING MEMBRANE,
+%I(1:50) = 5; % For a .5ms impulse uncomment this. (This gives a
+%.5milisecond impulse at 5 microamps/square cm. If you want to increase
+%this value change the number after the equals sign.
+I = ones(tau).*10; % this creates a constant current at a given value
+%you can change the value at which it is stimulated by changing the 
+% number the vector is being mulitplied by.
+
+%% Constants
 gK = 36; %max conductance of potassium
 gNa = 120; %max conductance of sodium
 gL = .3; %max conductance of leakage
 EK = -12; %Reversal potential of potassium
-ENa = 115; % reversal potential of sodium
+ENa = 115; % reversal potential of sodiumm
 EL = 10.6; % reversal potential of leakage current
-
 C=1; % cap in microFarads
 
 Vrest = -70;
@@ -45,7 +57,6 @@ h(1) = ah/(ah+Bh);
 %INa = m.^3.*gNa.*h.*(V-ENa);
 %IK = n.^4*gK*(V-EK);
 %IL = gL*(V-EL);
-
 %Iion = I-IK-INa-IL; %total current
 
 for i=1:tau-1
@@ -57,7 +68,6 @@ Bn(i) = .125*exp(-V(i)/80);
 ah(i) = .07*exp(-V(i)/20);
 Bh(i) = (1/(exp((30-V(i))/10)+1));    
 
-%I(i) = 0;
 %% Currents at each time step
 INa = (m(i).^3)*gNa*h(i)*(V(i)-ENa);
 IK = (n(i)^4)*gK*(V(i)-EK);
@@ -89,7 +99,7 @@ p2 = plot(t,gNa*(m.^3).*h,'color','g','linewidth' ,2);
 %legend([p1,p2], 'Conductance for K', 'Conductance for Na')
 ylabel('Conductance')
 xlabel('Time (ms)')
-
+title('gK and gNa')
 %%
 
 
