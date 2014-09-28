@@ -26,12 +26,12 @@ Vrest = -70;
 %% Gating Variables
 % initial states
 V = 0;
-am = .1*((25-V)/(exp((25-V)/10)-1));
-Bm = 4*exp(-V/18);
-an = .01*((10-V)/(exp((10-V)/10)-1));
+an = .01*( (10-V) /(exp(10-V/10)-1));
 Bn = .125*exp(-V/80);
+am = .1*((25-V)/(exp(25-V/10)-1));
+Bm = 4*exp(-V/18);
 ah = .07*exp(-V/20);
-Bh = (1/(exp((30-V)/10)+1));
+Bh = (1/(exp(30-V/10)+1));
 
 % this lets us calculate inital values for m,n, and h
 
@@ -50,12 +50,12 @@ h(1) = ah/(ah+Bh);
 
 for i=1:tau-1
 %% gated variable at each time steps
-am(i) = .1*((25-V(i))/(exp((25-V(i))/10)-1));
+am(i) = .1*((25-V(i))/(exp(25-V(i)/10)-1));
 Bm(i) = 4*exp(-V(i)/18);
-an(i) = .01*((10-V(i))/(exp((10-V(i))/10)-1));
+an(i) = .01*((10-V(i))/(exp(10-V(i)/10)-1));
 Bn(i) = .125*exp(-V(i)/80);
 ah(i) = .07*exp(-V(i)/20);
-Bh(i) = (1/(exp((30-V(i))/10)+1));    
+Bh(i) = (1/(exp(30-V(i)/10)+1));    
 
 %I(i) = 0;
 %% Currents at each time step
